@@ -22,7 +22,7 @@ public class HttpVerticle extends AbstractVerticle {
         router.route().handler(BodyHandler.create());
 
         router.get("/").handler(ctx -> {
-           ctx.response().putHeader(HttpHeaders.CONTENT_TYPE, "application/json");                                              ctx.response().end(new JsonObject().put("привет", "мир").encode());
+           ctx.response().putHeader(HttpHeaders.CONTENT_TYPE, "text/plain");                                                   ctx.response().end("Привет, мир!");
         });
 
         router.route().handler(StaticHandler.create());
