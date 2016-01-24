@@ -6,7 +6,7 @@ import io.vertx.core.logging.LoggerFactory;
 /**
  * Created by yarnykh on 14.01.2016.
  */
-public class HttpWebsocketVerticle extends AbstractVerticle {
+public class WebsocketVerticle extends AbstractVerticle {
 
     Logger logger = LoggerFactory.getLogger(AbstractVerticle.class);
 

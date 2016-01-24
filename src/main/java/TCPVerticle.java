@@ -1,14 +1,24 @@
 import io.vertx.core.AbstractVerticle;
+import io.vertx.core.Context;
+import io.vertx.core.Vertx;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 import io.vertx.core.net.NetServer;
 
+import static io.vertx.core.logging.LoggerFactory.getLogger;
+
 /**
  * Created by yarnykh on 14.01.2016.
  */
-public class EchoVerticle extends AbstractVerticle {
+public class TCPVerticle extends AbstractVerticle {
 
-    Logger logger = LoggerFactory.getLogger(EchoVerticle.class);
+    Logger logger = getLogger(TCPVerticle.class);
+
+    @Override
+    public void init(Vertx vertx, Context context) {
+        super.init(vertx, context);
+
+    }
 
     @Override
     public void start() throws Exception {
