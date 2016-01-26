@@ -1,3 +1,5 @@
+package org.almkg.verticles;
+
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.http.HttpServer;
 import io.vertx.core.logging.Logger;

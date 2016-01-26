@@ -1,3 +1,5 @@
+package org.almkg.verticles;
+
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.AsyncResult;
 import io.vertx.core.AsyncResultHandler;
