@@ -35,5 +35,6 @@
     <orderEntry type="library" name="Maven: org.reactivestreams:reactive-streams:1.0.0" level="project" />
     <orderEntry type="library" name="Maven: io.vertx:vertx-rx-java:3.2.0" level="project" />
     <orderEntry type="library" name="Maven: io.reactivex:rxjava:1.0.14" level="project" />
+    <orderEntry type="library" name="Maven: com.j256.ormlite:ormlite-core:4.20" level="project" />
   </component>
 </module>
