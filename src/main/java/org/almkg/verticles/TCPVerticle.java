@@ -2,6 +2,7 @@ package org.almkg.verticles;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Context;
 import io.vertx.core.Vertx;
+import io.vertx.core.eventbus.EventBus;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.net.NetServer;
 import io.vertx.core.parsetools.RecordParser;
@@ -46,9 +47,9 @@ public class TCPVerticle extends AbstractVerticle {
 
         server.listen(4321, "localhost", res -> {
             if (res.succeeded()) {
-                logger.info("Сервер запущен!");
+                logger.info("TCP Сервер запущен!");
             } else {
-                logger.info("Сервер не удалось запустить!");
+                logger.info("TCP Сервер не удалось запустить!");
             }
         });
     }
