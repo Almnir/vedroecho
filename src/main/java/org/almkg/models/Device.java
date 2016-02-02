@@ -1,11 +1,14 @@
 package org.almkg.models;
 
+import java.time.Instant;
+
 /**
  * Created by yarnykh on 26.01.2016.
  */
 public class Device {
 
     public static final String TABLE_NAME = "devices";
+
     public static final String ID_FIELD = "device_id";
     public static final String PASSWORD_FIELD = "passwd";
     public static final String DEVICE_DATE_FIELD = "device_date";
@@ -23,15 +26,15 @@ public class Device {
     public static final String REDUCER_TYPE_FIELD = "reducer_type";
     public static final String LIGHT_ENABLED_FIELD = "light_enabled";
 
-    private int deviceId;
+    private long deviceId;
     private String password;
-    private String deviceDate;
-    private String updateDate;
+    private Instant deviceDate;
+    private Instant updateDate;
     private String deviceMode;
-    private String timer1start;
-    private String timer1stop;
-    private String timer2start;
-    private String timer2stop;
+    private Instant timer1start;
+    private Instant timer1stop;
+    private Instant timer2start;
+    private Instant timer2stop;
     private Integer flowRate;
     private Boolean flowControlEnabled;
     private Integer prediction;
@@ -65,16 +68,16 @@ public class Device {
     public void setPassword(String password) {
         this.password = password;
     }
-    public String getDeviceDate() {
+    public Instant getDeviceDate() {
         return deviceDate;
     }
-    public void setDeviceDate(String deviceDate) {
+    public void setDeviceDate(Instant deviceDate) {
         this.deviceDate = deviceDate;
     }
-    public String getUpdateDate() {
+    public Instant getUpdateDate() {
         return updateDate;
     }
-    public void setUpdateDate(String updateDate) {
+    public void setUpdateDate(Instant updateDate) {
         this.updateDate = updateDate;
     }
     public String getDeviceMode() {
@@ -83,28 +86,28 @@ public class Device {
     public void setDeviceMode(String deviceMode) {
         this.deviceMode = deviceMode;
     }
-    public String getTimer1start() {
+    public Instant getTimer1start() {
         return timer1start;
     }
-    public void setTimer1start(String timer1start) {
+    public void setTimer1start(Instant timer1start) {
         this.timer1start = timer1start;
     }
-    public String getTimer1stop() {
+    public Instant getTimer1stop() {
         return timer1stop;
     }
-    public void setTimer1stop(String timer1stop) {
+    public void setTimer1stop(Instant timer1stop) {
         this.timer1stop = timer1stop;
     }
-    public String getTimer2start() {
+    public Instant getTimer2start() {
         return timer2start;
     }
-    public void setTimer2start(String timer2start) {
+    public void setTimer2start(Instant timer2start) {
         this.timer2start = timer2start;
     }
-    public String getTimer2stop() {
+    public Instant getTimer2stop() {
         return timer2stop;
     }
-    public void setTimer2stop(String timer2stop) {
+    public void setTimer2stop(Instant timer2stop) {
         this.timer2stop = timer2stop;
     }
     public Integer getFlowRate() {
@@ -151,15 +154,15 @@ public class Device {
     }
 
     public static class DeviceBuilder {
-        private int deviceId;
+        private long deviceId;
         private String password;
-        private String deviceDate;
-        private String updateDate;
+        private Instant deviceDate;
+        private Instant updateDate;
         private String deviceMode;
-        private String timer1start;
-        private String timer1stop;
-        private String timer2start;
-        private String timer2stop;
+        private Instant timer1start;
+        private Instant timer1stop;
+        private Instant timer2start;
+        private Instant timer2stop;
         private Integer flowRate;
         private Boolean flowControlEnabled;
         private Integer prediction;
@@ -168,7 +171,7 @@ public class Device {
         private Integer reducerType;
         private Boolean lightEnabled;
 
-        public DeviceBuilder(int deviceId) {
+        public DeviceBuilder(long deviceId) {
             this.deviceId = deviceId;
         }
 
@@ -177,12 +180,12 @@ public class Device {
             return this;
         }
 
-        public DeviceBuilder setDeviceDate(String deviceDate) {
+        public DeviceBuilder setDeviceDate(Instant deviceDate) {
             this.deviceDate = deviceDate;
             return this;
         }
 
-        public DeviceBuilder setUpdateDate(String updateDate) {
+        public DeviceBuilder setUpdateDate(Instant updateDate) {
             this.updateDate = updateDate;
             return this;
         }
@@ -192,22 +195,22 @@ public class Device {
             return this;
         }
 
-        public DeviceBuilder setTimer1start(String timer1start) {
+        public DeviceBuilder setTimer1start(Instant timer1start) {
             this.timer1start = timer1start;
             return this;
         }
 
-        public DeviceBuilder setTimer1stop(String timer1stop) {
+        public DeviceBuilder setTimer1stop(Instant timer1stop) {
             this.timer1stop = timer1stop;
             return this;
         }
 
-        public DeviceBuilder setTimer2start(String timer2start) {
+        public DeviceBuilder setTimer2start(Instant timer2start) {
             this.timer2start = timer2start;
             return this;
         }
 
-        public DeviceBuilder setTimer2stop(String timer2stop) {
+        public DeviceBuilder setTimer2stop(Instant timer2stop) {
             this.timer2stop = timer2stop;
             return this;
         }

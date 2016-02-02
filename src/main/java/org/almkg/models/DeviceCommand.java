@@ -1,5 +1,7 @@
 package org.almkg.models;
 
+import java.time.Instant;
+
 /**
  * Created by yarnykh on 26.01.2016.
  */
@@ -7,54 +9,41 @@ public class DeviceCommand {
 
     public static final String TABLE_NAME = "devicecommand";
 
-    public static final String ID_FIELD = "command_id";
+//    public static final String ID_FIELD = "command_id";
     public static final String COMMAND_START_FIELD = "command_start";
     public static final String COMMAND_END_FIELD = "command_end";
     public static final String DEVICE_DATE_FIELD = "device_date";
 
-    private int commandId;
+//    private int commandId;
 
-    private String commandStartTime;
+    private Instant commandStartTime;
 
-    private String commandEndTime;
+    private Instant commandEndTime;
 
-    private String deviceDate;
+    private Instant deviceDate;
 
-    public DeviceCommand(String commandStartTime, String commandEndTime, String deviceDate) {
-        this.commandStartTime = commandStartTime;
-        this.commandEndTime = commandEndTime;
-        this.deviceDate = deviceDate;
-    }
-
-    public String getCommandStartTime() {
+    public Instant getCommandStartTime() {
         return commandStartTime;
     }
 
-    public void setCommandStartTime(String commandStartTime) {
+    public void setCommandStartTime(Instant commandStartTime) {
         this.commandStartTime = commandStartTime;
     }
 
-    public String getCommandEndTime() {
+    public Instant getCommandEndTime() {
         return commandEndTime;
     }
 
-    public void setCommandEndTime(String commandEndTime) {
+    public void setCommandEndTime(Instant commandEndTime) {
         this.commandEndTime = commandEndTime;
     }
 
-    public String getDeviceDate() {
+    public Instant getDeviceDate() {
         return deviceDate;
     }
 
-    public void setDeviceDate(String deviceDate) {
+    public void setDeviceDate(Instant deviceDate) {
         this.deviceDate = deviceDate;
     }
 
-    public int getCommandId() {
-        return commandId;
-    }
-
-    public void setCommandId(int commandId) {
-        this.commandId = commandId;
-    }
 }
