@@ -1,37 +1,36 @@
 package org.almkg.models;
 
-import com.j256.ormlite.dao.ForeignCollection;
-import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.field.ForeignCollectionField;
-import com.j256.ormlite.table.DatabaseTable;
-
-import java.util.Set;
+import java.util.List;
 
 /**
  * Created by yarnykh on 26.01.2016.
+ * Таблица связей, оставлена для информативности и констант
  */
-@DatabaseTable(tableName = "user_devices")
 public class UserDevice {
 
-    private static final String DEVICE_GROUP_FIELD = "device_group";
+    public static final String TABLE_NAME = "userdevice";
 
-    @DatabaseField(generatedId = true)
+    public static final String ID_FIELD = "user_id";
+    public static final String DEVICES_FIELD = "devices";
+    public static final String DEVICE_GROUP_FIELD = "device_group";
+
     private int userId;
 
-    @ForeignCollectionField(eager = true)
-    private ForeignCollection<Device> devices;
+    private List<Device> devices;
 
-    @DatabaseField(foreign = true, columnName = DEVICE_GROUP_FIELD)
     private DeviceGroup deviceGroup;
 
-    public UserDevice() {
+    public UserDevice(int userId, List<Device> devices, DeviceGroup deviceGroup) {
+        this.userId = userId;
+        this.devices = devices;
+        this.deviceGroup = deviceGroup;
     }
 
-    public ForeignCollection<Device> getDevices() {
+    public List<Device> getDevices() {
         return devices;
     }
 
-    public void setDevices(ForeignCollection<Device> devices) {
+    public void setDevices(List<Device> devices) {
         this.devices = devices;
     }
 

@@ -1,28 +1,26 @@
 package org.almkg.models;
 
-import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.table.DatabaseTable;
-
 /**
  * Created by yarnykh on 26.01.2016.
  */
-@DatabaseTable(tableName = "device_groups")
 public class DeviceGroup {
 
-    private static final String DEVICE_GROUPNAME_FIELD = "groupname";
-    private static final String USER_FIELD = "user";
+    public static final String TABLE_NAME = "devicegroup";
 
-    @DatabaseField(generatedId = true)
+    public static final String ID_FIELD = "devicegroup_id";
+    public static final String DEVICE_GROUPNAME_FIELD = "groupname";
+    public static final String USER_FIELD = "user_id";
+
     private int deviceGroupId;
 
-    @DatabaseField(columnName = DEVICE_GROUPNAME_FIELD)
     private String deviceGroupName;
 
-    @DatabaseField(foreign = true, columnName = USER_FIELD)
-    private User userId;
+    private int userId;
 
-    public DeviceGroup() {
-
+    public DeviceGroup(int deviceGroupId, String deviceGroupName, int userId) {
+        this.deviceGroupId = deviceGroupId;
+        this.deviceGroupName = deviceGroupName;
+        this.userId = userId;
     }
 
     public String getDeviceGroupName() {
@@ -33,11 +31,11 @@ public class DeviceGroup {
         this.deviceGroupName = deviceGroupName;
     }
 
-    public User getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(User userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 }

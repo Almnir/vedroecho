@@ -1,57 +1,60 @@
 package org.almkg.models;
 
-import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.table.DatabaseTable;
-
-import java.util.Date;
-
 /**
  * Created by yarnykh on 26.01.2016.
  */
-@DatabaseTable(tableName = "device_commands")
 public class DeviceCommand {
 
-    private static final String COMMAND_START_FIELD = "command_start";
-    private static final String COMMAND_END_FIELD = "command_end";
-    private static final String DEVICE_DATE_FIELD = "device_date";
+    public static final String TABLE_NAME = "devicecommand";
 
-    @DatabaseField(generatedId = true)
+    public static final String ID_FIELD = "command_id";
+    public static final String COMMAND_START_FIELD = "command_start";
+    public static final String COMMAND_END_FIELD = "command_end";
+    public static final String DEVICE_DATE_FIELD = "device_date";
+
     private int commandId;
 
-    @DatabaseField(columnName = COMMAND_START_FIELD, canBeNull = false)
-    private Date commandStartTime;
+    private String commandStartTime;
 
-    @DatabaseField(columnName = COMMAND_END_FIELD, canBeNull = false)
-    private Date commandEndTime;
+    private String commandEndTime;
 
-    @DatabaseField(columnName = DEVICE_DATE_FIELD, canBeNull = false)
-    private Date deviceDate;
+    private String deviceDate;
 
-    public DeviceCommand() {
-
+    public DeviceCommand(String commandStartTime, String commandEndTime, String deviceDate) {
+        this.commandStartTime = commandStartTime;
+        this.commandEndTime = commandEndTime;
+        this.deviceDate = deviceDate;
     }
 
-    public Date getCommandStartTime() {
+    public String getCommandStartTime() {
         return commandStartTime;
     }
 
-    public void setCommandStartTime(Date commandStartTime) {
+    public void setCommandStartTime(String commandStartTime) {
         this.commandStartTime = commandStartTime;
     }
 
-    public Date getCommandEndTime() {
+    public String getCommandEndTime() {
         return commandEndTime;
     }
 
-    public void setCommandEndTime(Date commandEndTime) {
+    public void setCommandEndTime(String commandEndTime) {
         this.commandEndTime = commandEndTime;
     }
 
-    public Date getDeviceDate() {
+    public String getDeviceDate() {
         return deviceDate;
     }
 
-    public void setDeviceDate(Date deviceDate) {
+    public void setDeviceDate(String deviceDate) {
         this.deviceDate = deviceDate;
+    }
+
+    public int getCommandId() {
+        return commandId;
+    }
+
+    public void setCommandId(int commandId) {
+        this.commandId = commandId;
     }
 }

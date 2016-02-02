@@ -7,9 +7,12 @@ import io.vertx.core.logging.LoggerFactory;
 import io.vertx.ext.auth.AuthProvider;
 import io.vertx.ext.auth.jdbc.JDBCAuth;
 import io.vertx.ext.jdbc.JDBCClient;
+import io.vertx.ext.sql.SQLConnection;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.handler.*;
 import io.vertx.ext.web.sstore.LocalSessionStore;
+import org.almkg.database.DBConnection;
+import org.almkg.database.QueryDAO;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -24,6 +27,9 @@ public class HttpVerticle extends AbstractVerticle {
 
     @Override
     public void start() throws Exception {
+
+        DBConnection db = new DBConnection();
+        QueryDAO dao = new QueryDAO(vertx, db);
 
         setUpInitialData("jdbc:hsqldb:mem:test?shutdown=true");
 
