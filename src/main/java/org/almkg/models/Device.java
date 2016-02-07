@@ -7,39 +7,43 @@ import java.time.Instant;
  */
 public class Device {
 
-    public static final String TABLE_NAME = "devices";
+    public static final String TABLE_NAME = "Device";
 
-    public static final String ID_FIELD = "device_id";
-    public static final String PASSWORD_FIELD = "passwd";
-    public static final String DEVICE_DATE_FIELD = "device_date";
-    public static final String UPDATE_DATE_FIELD = "update_date";
-    public static final String DEVICE_MODE_FIELD = "device_mode";
+    public static final String ID_FIELD = "DeviceID";
+    public static final String PASSWORD_FIELD = "password";
+    public static final String DEVICE_DATE_FIELD = "deviceDate";    //Системная дата утр-ва
+    public static final String DEVICE_TIME_FIELD = "deviceTime";    //Системное время утр-ва
+    public static final String UPDATE_TIME_TIMESTAMP_FIELD = "timeUpdatedTimestamp";    //метка времени получения системного времени утройства
+    public static final String UPDATE_DATA_TIMESTAMP_FIELD = "updatedTimestamp";    //метка времени получения пакета данных
+    public static final String DEVICE_MODE_FIELD = "deviceMode";    //Режим работы (по таймеру/ручной)
     public static final String TIMER_1_START_FIELD = "timer1start";
     public static final String TIMER_1_STOP_FIELD = "timer1stop";
     public static final String TIMER_2_START_FIELD = "timer2start";
     public static final String TIMER_2_STOP_FIELD = "timer2stop";
-    public static final String FLOW_RATE_FIELD = "flowrate";
-    public static final String FLOW_ENABLED_FIELD = "flow_enabled";
-    public static final String PREDICTION_FIELD = "prediction";
-    public static final String GAS_AVAILABILITY_FIELD = "gas_available";
-    public static final String VOLUME_FIELD = "volume";
-    public static final String REDUCER_TYPE_FIELD = "reducer_type";
-    public static final String LIGHT_ENABLED_FIELD = "light_enabled";
+    public static final String FLOW_RATE_MODE_FIELD = "flowRateMode";        //режим расхода газа (50%,100%,200%)
+    public static final String FLOW_CONTROL_ENABLED_FIELD = "flowControlEnabled";    //включен/выключен контоль расхода газа
+    public static final String GAS_AVAILABILITY_PREDICTION_FIELD = "gasAvailabilityPrediction"; //на сколько хватит газа в баллоне
+    public static final String GAS_AVAILABILITY_FIELD = "gasAvailability"; //Газ в баллоне есть/нет
+    public static final String VOLUME_FIELD = "gasCylinderVolume";      //Объём газового баллона
+    public static final String REDUCER_TYPE_FIELD = "reducerType";      //Тип редуктора (резерв, пока не используется)
+    public static final String LIGHT_ENABLE_FIELD = "lightEnabled";   //Подсветка включена/выключена
 
     private long deviceId;
     private String password;
-    private Instant deviceDate;
-    private Instant updateDate;
+    private Instant deviceDate;    //Системная дата утр-ва
+    private Instant deviceTime;    //Системное время утр-ва
+    private Instant updatedTimestamp;   //метка времеи последего пакета с данными
+    private Instant timeUpdatedTimestamp;   //метка времени пекета с системным временем устройства
     private String deviceMode;
     private Instant timer1start;
     private Instant timer1stop;
     private Instant timer2start;
     private Instant timer2stop;
-    private Integer flowRate;
+    private Integer flowRateMode;
     private Boolean flowControlEnabled;
-    private Integer prediction;
+    private Integer gasAvailabilityPrediction;
     private Boolean gasAvailability;
-    private Integer volume;
+    private Integer gasCylinderVolume;
     private Integer reducerType;
     private Boolean lightEnabled;
 
@@ -47,17 +51,18 @@ public class Device {
         this.deviceId = builder.deviceId;
         this.password = builder.password;
         this.deviceDate = builder.deviceDate;
-        this.updateDate = builder.updateDate;
+        this.updatedTimestamp = builder.updatedTimestamp;
+        this.timeUpdatedTimestamp = builder.timeUpdatedTimestamp;
         this.deviceMode = builder.deviceMode;
         this.timer1start = builder.timer1start;
         this.timer1stop = builder.timer1stop;
         this.timer2start = builder.timer2start;
         this.timer2stop = builder.timer2stop;
-        this.flowRate = builder.flowRate;
+        this.flowRateMode = builder.flowRateMode;
         this.flowControlEnabled = builder.flowControlEnabled;
-        this.prediction = builder.prediction;
+        this.gasAvailabilityPrediction = builder.gasAvailabilityPrediction;
         this.gasAvailability = builder.gasAvailability;
-        this.volume = builder.volume;
+        this.gasCylinderVolume = builder.gasCylinderVolume;
         this.reducerType = builder.reducerType;
         this.lightEnabled = builder.lightEnabled;
     }
@@ -74,12 +79,18 @@ public class Device {
     public void setDeviceDate(Instant deviceDate) {
         this.deviceDate = deviceDate;
     }
-    public Instant getUpdateDate() {
-        return updateDate;
+    public Instant getDeviceTime() { return deviceTime; }
+    public void setDeviceTime(Instant deviceTime) { this.deviceTime = deviceTime; }
+    public Instant getUpdatedTimestamp() {
+        return updatedTimestamp;
     }
-    public void setUpdateDate(Instant updateDate) {
-        this.updateDate = updateDate;
+    public void setTimeUpdatedTimestamp(Instant timeUpdatedTimestamp) {
+        this.timeUpdatedTimestamp = timeUpdatedTimestamp;
     }
+    public void setUpdatedTimestamp(Instant updatedTimestamp) {
+        this.updatedTimestamp = updatedTimestamp;
+    }
+    public Instant getTimeUpdatedTimestamp() {        return timeUpdatedTimestamp;    }
     public String getDeviceMode() {
         return deviceMode;
     }
@@ -110,11 +121,11 @@ public class Device {
     public void setTimer2stop(Instant timer2stop) {
         this.timer2stop = timer2stop;
     }
-    public Integer getFlowRate() {
-        return flowRate;
+    public Integer getFlowRateMode() {
+        return flowRateMode;
     }
-    public void setFlowRate(Integer flowRate) {
-        this.flowRate = flowRate;
+    public void setFlowRateMode(Integer flowRateMode) {
+        this.flowRateMode = flowRateMode;
     }
     public Boolean getFlowControlEnabled() {
         return flowControlEnabled;
@@ -122,11 +133,11 @@ public class Device {
     public void setFlowControlEnabled(Boolean flowControlEnabled) {
         this.flowControlEnabled = flowControlEnabled;
     }
-    public Integer getPrediction() {
-        return prediction;
+    public Integer getGasAvailabilityPrediction() {
+        return gasAvailabilityPrediction;
     }
-    public void setPrediction(Integer prediction) {
-        this.prediction = prediction;
+    public void setGasAvailabilityPrediction(Integer gasAvailabilityPrediction) {
+        this.gasAvailabilityPrediction = gasAvailabilityPrediction;
     }
     public Boolean getGasAvailability() {
         return gasAvailability;
@@ -134,11 +145,11 @@ public class Device {
     public void setGasAvailability(Boolean gasAvailability) {
         this.gasAvailability = gasAvailability;
     }
-    public Integer getVolume() {
-        return volume;
+    public Integer getGasCylinderVolume() {
+        return gasCylinderVolume;
     }
-    public void setVolume(Integer volume) {
-        this.volume = volume;
+    public void setGasCylinderVolume(Integer volume) {
+        this.gasCylinderVolume = volume;
     }
     public Integer getReducerType() {
         return reducerType;
@@ -156,20 +167,23 @@ public class Device {
     public static class DeviceBuilder {
         private long deviceId;
         private String password;
-        private Instant deviceDate;
-        private Instant updateDate;
+        private Instant deviceDate;    //Системная дата утр-ва
+        private Instant deviceTime;    //Системное время утр-ва
+        private Instant updatedTimestamp;   //метка времеи последего пакета с данными
+        private Instant timeUpdatedTimestamp;   //метка времени пекета с системным временем устройства
         private String deviceMode;
         private Instant timer1start;
         private Instant timer1stop;
         private Instant timer2start;
         private Instant timer2stop;
-        private Integer flowRate;
+        private Integer flowRateMode;
         private Boolean flowControlEnabled;
-        private Integer prediction;
+        private Integer gasAvailabilityPrediction;
         private Boolean gasAvailability;
-        private Integer volume;
+        private Integer gasCylinderVolume;
         private Integer reducerType;
         private Boolean lightEnabled;
+
 
         public DeviceBuilder(long deviceId) {
             this.deviceId = deviceId;
@@ -185,8 +199,18 @@ public class Device {
             return this;
         }
 
-        public DeviceBuilder setUpdateDate(Instant updateDate) {
-            this.updateDate = updateDate;
+        public DeviceBuilder setDeviceTime(Instant deviceTime) {
+            this.deviceTime = deviceTime;
+            return this;
+        }
+
+        public DeviceBuilder setUpdatedTimestamp(Instant updatedTimestamp) {
+            this.updatedTimestamp = updatedTimestamp;
+            return this;
+        }
+
+        public DeviceBuilder setTimeUpdatedTimestamp(Instant timeUpdatedTimestamp) {
+            this.timeUpdatedTimestamp = timeUpdatedTimestamp;
             return this;
         }
 
@@ -215,8 +239,8 @@ public class Device {
             return this;
         }
 
-        public DeviceBuilder setFlowRate(Integer flowRate) {
-            this.flowRate = flowRate;
+        public DeviceBuilder setFlowRate(Integer flowRateMode) {
+            this.flowRateMode = flowRateMode;
             return this;
         }
 
@@ -225,8 +249,8 @@ public class Device {
             return this;
         }
 
-        public DeviceBuilder setPrediction(Integer prediction) {
-            this.prediction = prediction;
+        public DeviceBuilder setGasAvailabilityPrediction(Integer gasAvailabilityPrediction) {
+            this.gasAvailabilityPrediction = gasAvailabilityPrediction;
             return this;
         }
 
@@ -235,8 +259,8 @@ public class Device {
             return this;
         }
 
-        public DeviceBuilder setVolume(Integer volume) {
-            this.volume = volume;
+        public DeviceBuilder setGasCylinderVolume(Integer gasCylinderVolume) {
+            this.gasCylinderVolume = gasCylinderVolume;
             return this;
         }
 

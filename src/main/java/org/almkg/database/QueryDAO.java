@@ -12,7 +12,6 @@ import org.almkg.models.Device;
 import org.almkg.models.User;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -137,19 +136,19 @@ public class QueryDAO implements IQueryDAO {
                 int device_id = row.getInteger(Device.ID_FIELD);
                 String password = row.getString(Device.PASSWORD_FIELD);
                 String deviceDate = row.getString(Device.DEVICE_DATE_FIELD);
-                String updateDate = row.getString(Device.UPDATE_DATE_FIELD);
+                String updateDate = row.getString(Device.UPDATE_TIME_TIMESTAMP_FIELD);
                 String deviceMode  = row.getString(Device.DEVICE_MODE_FIELD);
                 String timer1start  = row.getString(Device.TIMER_1_START_FIELD);
                 String timer1stop = row.getString(Device.TIMER_1_STOP_FIELD);
                 String timer2start = row.getString(Device.TIMER_2_START_FIELD);
                 String timer2stop = row.getString(Device.TIMER_2_STOP_FIELD);
-                Integer flowRate  = row.getInteger(Device.FLOW_RATE_FIELD);
-                Boolean flowControlEnabled = row.getBoolean(Device.FLOW_ENABLED_FIELD);
-                Integer prediction  = row.getInteger(Device.PREDICTION_FIELD);
+                Integer flowRate  = row.getInteger(Device.FLOW_RATE_MODE_FIELD);
+                Boolean flowControlEnabled = row.getBoolean(Device.FLOW_CONTROL_ENABLED_FIELD);
+                Integer prediction  = row.getInteger(Device.GAS_AVAILABILITY_PREDICTION_FIELD);
                 Boolean gasAvailability = row.getBoolean(Device.GAS_AVAILABILITY_FIELD);
                 Integer volume = row.getInteger(Device.VOLUME_FIELD);
                 Integer reducerType = row.getInteger(Device.REDUCER_TYPE_FIELD);
-                Boolean lightEnabled = row.getBoolean(Device.LIGHT_ENABLED_FIELD);
+                Boolean lightEnabled = row.getBoolean(Device.LIGHT_ENABLE_FIELD);
                 devices[0] = new Device.DeviceBuilder(device_id).setPassword(password).setDeviceDate(deviceDate)
                         .setUpdateDate(updateDate).setDeviceMode(deviceMode).setTimer1start(timer1start)
                         .setTimer1stop(timer1stop).setTimer2start(timer2start).setTimer2stop(timer2stop)
