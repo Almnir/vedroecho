@@ -137,25 +137,40 @@ public class QueryDAO implements IQueryDAO {
                 int device_id = row.getInteger(Device.ID_FIELD);
                 String password = row.getString(Device.PASSWORD_FIELD);
                 Instant deviceDate = row.getInstant(Device.DEVICE_DATE_FIELD);
-                String updateDate = row.getString(Device.UPDATE_TIME_TIMESTAMP_FIELD);
+                Instant deviceTime = row.getInstant(Device.DEVICE_TIME_FIELD);
+                Instant updateTimestamp = row.getInstant(Device.UPDATE_DATA_TIMESTAMP_FIELD);
+                Instant updateTimeTimestamp = row.getInstant(Device.UPDATE_TIME_TIMESTAMP_FIELD);
                 String deviceMode  = row.getString(Device.DEVICE_MODE_FIELD);
-                String timer1start  = row.getString(Device.TIMER_1_START_FIELD);
-                String timer1stop = row.getString(Device.TIMER_1_STOP_FIELD);
-                String timer2start = row.getString(Device.TIMER_2_START_FIELD);
-                String timer2stop = row.getString(Device.TIMER_2_STOP_FIELD);
-                Integer flowRate  = row.getInteger(Device.FLOW_RATE_MODE_FIELD);
+                Instant timer1start  = row.getInstant(Device.TIMER_1_START_FIELD);
+                Instant timer1stop = row.getInstant(Device.TIMER_1_STOP_FIELD);
+                Instant timer2start = row.getInstant(Device.TIMER_2_START_FIELD);
+                Instant timer2stop = row.getInstant(Device.TIMER_2_STOP_FIELD);
+                Integer flowRateMode  = row.getInteger(Device.FLOW_RATE_MODE_FIELD);
                 Boolean flowControlEnabled = row.getBoolean(Device.FLOW_CONTROL_ENABLED_FIELD);
-                Integer prediction  = row.getInteger(Device.GAS_AVAILABILITY_PREDICTION_FIELD);
+                Integer gasAvailabilityPrediction  = row.getInteger(Device.GAS_AVAILABILITY_PREDICTION_FIELD);
                 Boolean gasAvailability = row.getBoolean(Device.GAS_AVAILABILITY_FIELD);
                 Integer volume = row.getInteger(Device.GAS_CYLINDER_VOLUME_FIELD);
                 Integer reducerType = row.getInteger(Device.REDUCER_TYPE_FIELD);
                 Boolean lightEnabled = row.getBoolean(Device.LIGHT_ENABLE_FIELD);
-                devices[0] = new Device.DeviceBuilder(device_id).setPassword(password).setDeviceDate(deviceDate)
-                        .setTimeUpdatedTimestamp(updateDate).setDeviceMode(deviceMode).setTimer1start(timer1start)
-                        .setTimer1stop(timer1stop).setTimer2start(timer2start).setTimer2stop(timer2stop)
-                        .setFlowRate(flowRate).setFlowControlEnabled(flowControlEnabled)
-                        .setPrediction(prediction).setGasAvailability(gasAvailability).setVolume(volume)
-                        .setReducerType(reducerType).setLightEnabled(lightEnabled).build();
+                Integer workingTime = row.getInteger(Device.WORKING_TIME_FIELD);
+                String version = row.getString(Device.VERSION_FIELD);
+                float motorTemperature = row.getFloat(Device.MOTOR_TEMPERATURE_FIELD);
+                float heaterTemperature = row.getFloat(Device.HEATER_TEMPERATURE_FIELD);
+                float temperature = row.getFloat(Device.TEMPERATURE_FIELD);
+                devices[0] = new Device.DeviceBuilder(device_id).setPassword(password)
+                        .setDeviceDate(deviceDate).setDeviceTime(deviceTime)
+                        .setTimeUpdatedTimestamp(updateTimeTimestamp)
+                        .setDeviceMode(deviceMode)
+                        .setTimer1start(timer1start).setTimer1stop(timer1stop)
+                        .setTimer2start(timer2start).setTimer2stop(timer2stop)
+                        .setFlowRateMode(flowRateMode).setFlowControlEnabled(flowControlEnabled)
+                        .setGasAvailabilityPrediction(gasAvailabilityPrediction)
+                        .setGasAvailability(gasAvailability).setGasCylinderVolume(volume)
+                        .setReducerType(reducerType).setLightEnabled(lightEnabled)
+                        .setWorkingTime(workingTime)
+                        .setVersion(version).setTemperature(temperature)
+                        .setMotorTemperature(motorTemperature).setHeaterTemperature(heaterTemperature)
+                        .build();
             } else {
                 logger.error("Error while getDeviceById(" + id + ")");
             }

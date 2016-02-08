@@ -63,6 +63,7 @@ public class Device {
         this.deviceId = builder.deviceId;
         this.password = builder.password;
         this.deviceDate = builder.deviceDate;
+        this.deviceTime = builder.deviceTime;
         this.updatedTimestamp = builder.updatedTimestamp;
         this.timeUpdatedTimestamp = builder.timeUpdatedTimestamp;
         this.deviceMode = builder.deviceMode;
@@ -77,6 +78,11 @@ public class Device {
         this.gasCylinderVolume = builder.gasCylinderVolume;
         this.reducerType = builder.reducerType;
         this.lightEnabled = builder.lightEnabled;
+        this.workingTime = builder.workingTime;
+        this.version = builder.version;
+        this.heaterTemperature = builder.heaterTemperature;
+        this.motorTemperature =builder.motorTemperature;
+        this.temperature = builder.temperature;
     }
 
     public String getPassword() {
@@ -175,6 +181,17 @@ public class Device {
     public void setLightEnabled(Boolean lightEnabled) {
         this.lightEnabled = lightEnabled;
     }
+    public Integer getWorkingTime() {        return workingTime;    }
+    public void setWorkingTime(Integer workingTime) {        this.workingTime = workingTime;    }
+    public String getVersion() {        return version;    }
+    public void setVersion(String version) {        this.version = version;    }
+    public float getHeaterTemperature() {        return heaterTemperature;    }
+    public void setHeaterTemperature(float heaterTemperature) {  this.heaterTemperature = heaterTemperature;}
+    public float getMotorTemperature() {        return motorTemperature;    }
+    public void setMotorTemperature(float motorTemperature) {        this.motorTemperature = motorTemperature;    }
+    public float getTemperature() {        return temperature;    }
+    public void setTemperature(float temperature) {        this.temperature = temperature;    }
+
 
     public static class DeviceBuilder {
         private long deviceId;
