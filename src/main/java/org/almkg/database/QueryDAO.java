@@ -11,6 +11,7 @@ import io.vertx.ext.sql.UpdateResult;
 import org.almkg.models.Device;
 import org.almkg.models.User;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -135,7 +136,7 @@ public class QueryDAO implements IQueryDAO {
                 JsonObject row = rows.get(0);
                 int device_id = row.getInteger(Device.ID_FIELD);
                 String password = row.getString(Device.PASSWORD_FIELD);
-                String deviceDate = row.getString(Device.DEVICE_DATE_FIELD);
+                Instant deviceDate = row.getInstant(Device.DEVICE_DATE_FIELD);
                 String updateDate = row.getString(Device.UPDATE_TIME_TIMESTAMP_FIELD);
                 String deviceMode  = row.getString(Device.DEVICE_MODE_FIELD);
                 String timer1start  = row.getString(Device.TIMER_1_START_FIELD);
@@ -146,11 +147,11 @@ public class QueryDAO implements IQueryDAO {
                 Boolean flowControlEnabled = row.getBoolean(Device.FLOW_CONTROL_ENABLED_FIELD);
                 Integer prediction  = row.getInteger(Device.GAS_AVAILABILITY_PREDICTION_FIELD);
                 Boolean gasAvailability = row.getBoolean(Device.GAS_AVAILABILITY_FIELD);
-                Integer volume = row.getInteger(Device.VOLUME_FIELD);
+                Integer volume = row.getInteger(Device.GAS_CYLINDER_VOLUME_FIELD);
                 Integer reducerType = row.getInteger(Device.REDUCER_TYPE_FIELD);
                 Boolean lightEnabled = row.getBoolean(Device.LIGHT_ENABLE_FIELD);
                 devices[0] = new Device.DeviceBuilder(device_id).setPassword(password).setDeviceDate(deviceDate)
-                        .setUpdateDate(updateDate).setDeviceMode(deviceMode).setTimer1start(timer1start)
+                        .setTimeUpdatedTimestamp(updateDate).setDeviceMode(deviceMode).setTimer1start(timer1start)
                         .setTimer1stop(timer1stop).setTimer2start(timer2start).setTimer2stop(timer2stop)
                         .setFlowRate(flowRate).setFlowControlEnabled(flowControlEnabled)
                         .setPrediction(prediction).setGasAvailability(gasAvailability).setVolume(volume)

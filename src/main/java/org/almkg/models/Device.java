@@ -11,6 +11,7 @@ public class Device {
 
     public static final String ID_FIELD = "DeviceID";
     public static final String PASSWORD_FIELD = "password";
+    public static final String PASSWORD_SALT_FIELD = "salt";
     public static final String DEVICE_DATE_FIELD = "deviceDate";    //Системная дата утр-ва
     public static final String DEVICE_TIME_FIELD = "deviceTime";    //Системное время утр-ва
     public static final String UPDATE_TIME_TIMESTAMP_FIELD = "timeUpdatedTimestamp";    //метка времени получения системного времени утройства
@@ -23,15 +24,21 @@ public class Device {
     public static final String FLOW_RATE_MODE_FIELD = "flowRateMode";        //режим расхода газа (50%,100%,200%)
     public static final String FLOW_CONTROL_ENABLED_FIELD = "flowControlEnabled";    //включен/выключен контоль расхода газа
     public static final String GAS_AVAILABILITY_PREDICTION_FIELD = "gasAvailabilityPrediction"; //на сколько хватит газа в баллоне
-    public static final String GAS_AVAILABILITY_FIELD = "gasAvailability"; //Газ в баллоне есть/нет
-    public static final String VOLUME_FIELD = "gasCylinderVolume";      //Объём газового баллона
-    public static final String REDUCER_TYPE_FIELD = "reducerType";      //Тип редуктора (резерв, пока не используется)
-    public static final String LIGHT_ENABLE_FIELD = "lightEnabled";   //Подсветка включена/выключена
+    public static final String GAS_AVAILABILITY_FIELD = "gasAvailability";  //Газ в баллоне есть/нет
+    public static final String GAS_CYLINDER_VOLUME_FIELD = "gasCylinderVolume"; //Объём газового баллона
+    public static final String REDUCER_TYPE_FIELD = "reducerType";  //Тип редуктора (резерв, пока не используется)
+    public static final String LIGHT_ENABLE_FIELD = "lightEnabled"; //Подсветка включена/выключена
+    public static final String WORKING_TIME_FIELD = "workingTime";  // Время работы системы (uptime)
+    public static final String VERSION_FIELD = "version";   // Версия прошивки
+    public static final String HEATER_TEMPERATURE_FIELD = "heaterTemperature";  // Температура нагревателя
+    public static final String MOTOR_TEMPERATURE_FIELD = "motorTemperature";    // Температура двигателя
+    public static final String TEMPERATURE_FIELD = "temperature";   // Температура окружающей среды
+
 
     private long deviceId;
     private String password;
-    private Instant deviceDate;    //Системная дата утр-ва
-    private Instant deviceTime;    //Системное время утр-ва
+    private Instant deviceDate; //Системная дата утр-ва
+    private Instant deviceTime; //Системное время утр-ва
     private Instant updatedTimestamp;   //метка времеи последего пакета с данными
     private Instant timeUpdatedTimestamp;   //метка времени пекета с системным временем устройства
     private String deviceMode;
@@ -46,6 +53,11 @@ public class Device {
     private Integer gasCylinderVolume;
     private Integer reducerType;
     private Boolean lightEnabled;
+    private Integer workingTime;
+    private String version;
+    private float heaterTemperature;
+    private float motorTemperature;
+    private float temperature;
 
     public Device(DeviceBuilder builder) {
         this.deviceId = builder.deviceId;
@@ -183,7 +195,11 @@ public class Device {
         private Integer gasCylinderVolume;
         private Integer reducerType;
         private Boolean lightEnabled;
-
+        private Integer workingTime;
+        private String version;
+        private float heaterTemperature;
+        private float motorTemperature;
+        private float temperature;
 
         public DeviceBuilder(long deviceId) {
             this.deviceId = deviceId;
@@ -239,7 +255,7 @@ public class Device {
             return this;
         }
 
-        public DeviceBuilder setFlowRate(Integer flowRateMode) {
+        public DeviceBuilder setFlowRateMode(Integer flowRateMode) {
             this.flowRateMode = flowRateMode;
             return this;
         }
@@ -271,6 +287,31 @@ public class Device {
 
         public DeviceBuilder setLightEnabled(Boolean lightEnabled) {
             this.lightEnabled = lightEnabled;
+            return this;
+        }
+
+        public DeviceBuilder setTemperature(float temperature) {
+            this.temperature = temperature;
+            return this;
+        }
+
+        public DeviceBuilder setMotorTemperature(float motorTemperature) {
+            this.motorTemperature = motorTemperature;
+            return this;
+        }
+
+        public DeviceBuilder setHeaterTemperature(float heaterTemperature) {
+            this.heaterTemperature = heaterTemperature;
+            return this;
+        }
+
+        public DeviceBuilder setVersion(String version) {
+            this.version = version;
+            return this;
+        }
+
+        public DeviceBuilder setWorkingTime(Integer workingTime) {
+            this.workingTime = workingTime;
             return this;
         }
 
